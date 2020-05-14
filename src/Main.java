@@ -20,7 +20,13 @@ public class Main {
         JavascriptExecutor js = (JavascriptExecutor)driver;
         String script = "return document.getElementById(\"search_input\").value;";
         String text = (String) js.executeScript(script);
-        System.out.println(text);
+//        System.out.println(text);
+
+        while(!text.equalsIgnoreCase("LGA")){
+            driver.findElement(By.id("search_input")).sendKeys(Keys.DOWN);
+            text = (String) js.executeScript(script);
+            System.out.println(text);
+        }
 
         Thread.sleep(2000);
         driver.findElement(By.id("search_input")).sendKeys(Keys.ENTER);
